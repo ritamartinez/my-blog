@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<table class="table table-hover">
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><div class="glyphicon glyphicon-star-empty favorite"></div></td>
+        <td><%= post.title %></td>
+        <td><%= post.body %></td>
+        <td><%= post.category_id %></td>
+        <td><% if User.where(id: post.user_id).exists? %>
+            <%= User.find(post.user_id).email %>
+            <% else %>
+            <%= "Can't find email"%>
+            <%end%>
+        </td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Post', new_post_path %>
+<script>
+    $(".favorite").click(function (){
+      $(this).removeClass("glyphicon-star-empty");
+      $(this).addClass("glyphicon-star");
+  });
+</script>
