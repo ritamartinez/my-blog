@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :posts
   root "home#index"
   
-  get "api/v1/weather" => "api/v1/weather#get_weather"
+  get 'api/v1/get_weather' => 'api/v1/weather#get_weather'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
